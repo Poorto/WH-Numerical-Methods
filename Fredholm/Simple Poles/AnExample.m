@@ -3,6 +3,8 @@ Example solution to Wiener-Hopf equation using Fredholm Integral Equation
 of the second kind
 Form: G*V+ = V- - F0
 Where F0 has a simple pole at x_0
+
+%Warning - Pole cannot be exactly on the real line
 %}
 
 clear
@@ -13,7 +15,7 @@ h=.2;   %Spacing
 A=10;   %Path Endpoints (from -A to A)
 
 phi=3*pi()/12;
-sigma=1-i*10^(-8);      %Note - Singularity must be in upper or lower plane
+sigma=1-i*10^(-8);    %Note - Singularity must be in upper or lower plane
 x0=-sigma*cos(phi);   %Location of Singularity of F0 (x_0)
 
 %Define Function Handle of Matrix G
