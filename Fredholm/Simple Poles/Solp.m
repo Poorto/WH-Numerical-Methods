@@ -1,4 +1,4 @@
-function [Solp]=Solp(Gfun,Ffun,sing,A,h)
+function [Solp]=Solp(Gfun,Ffun,sing,A,h,w,dw)
 %{
     Solve Numerical Fredholm IE of Second Kind Using Quadrature Integration
     Form - G(a)*U+ = U- + F0
@@ -8,11 +8,12 @@ function [Solp]=Solp(Gfun,Ffun,sing,A,h)
         sing - Location of 1st order Singularity in F0
         A - Length of Integration Line to Use
         h - Spacing Between Points for Quatrature Integration
+        w - Path for Numerical Integration
+        dw - Derivative of Path for Numerical Integration
     Returns:
         Solp - Vector of Solutions at A/h Points
             Length = 2*MO*(A/h+1) 
 %}
-    w=@(y)exp(i*pi()/4)*y;
     N=round(A/h);       %Index Length of Path
     Ftemp = Ffun(0);    %Check Solvability of F0
     MO = length(Ftemp); %Detect Vector Length
@@ -44,7 +45,7 @@ function [Solp]=Solp(Gfun,Ffun,sing,A,h)
         for n=-N:N
             c=MO*(n+N);             %Identify Column Location
             y=w(n*h);               %Warped Integration Path
-            Wp=exp(i*pi()/4);       %Derivative of Warped Path
+            Wp=dw(n*h);             %Derivative of Warped Path
             Mt=Mp(Gfun,x,y);        %Solve Matrix Kernal M(x,y)
             Bt=h*Wp*Mt/(2*pi()*i);  %Numerical Step Spacing*M(x,y)
             

@@ -11,10 +11,10 @@ clear
 clc
 
 %Define Length and Spacing for Numerical Integration
-h=.2;   %Spacing
+h=.1;   %Spacing
 A=10;   %Path Endpoints (from -A to A)
 
-phi=3*pi()/12;
+phi=7*pi()/12;
 sigma=1-i*10^(-8);    %Note - Singularity must be in upper or lower plane
 x0=-sigma*cos(phi);   %Location of Singularity of F0 (x_0)
 

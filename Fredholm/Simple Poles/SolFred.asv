@@ -14,13 +14,10 @@ function [SolFred]=SolFred(Gfun,Ffun,sing,A,h)
 %}
 
     if imag(sing)>0
-        w=@(y)exp(-i*pi()/4)*y;
-        dw=@(y)exp(-i*pi()/4);
-        SolFred = Solp(Gfun,Ffun,sing,A,h,w,dw);
+        t=@(x)exp(
+        SolFred = Solp(Gfun,Ffun,sing,A,h);
     else
-        t=@(y)exp(i*pi()/4)*y;
-        dt=@(y)exp(i*pi()/4);
-        SolFred = Solm(Gfun,Ffun,sing,A,h,t,dt);    
+        SolFred = Solm(Gfun,Ffun,sing,A,h);    
     end
 end
     
